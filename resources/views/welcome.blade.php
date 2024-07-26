@@ -2,13 +2,13 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <x-head.tinymce-config/>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </head>
     <body class="antialiased">
-       <h1>TinyMCE integration on Laravel BINI.BINIS</h1>
+       <h1 align="center">TinyMCE integration on Laravel</h1>
        <x-forms.tinymce-editor/>
        
        <label for="title"> Title </lable>
@@ -17,14 +17,14 @@
 
        <label for="title"> Description </lable>
        <br />
-       <textarea id="description" name="w3review" rows="4" cols="50" style="margin-bottom: 30px;"></textarea>
+       <textarea id="description" name="description" rows="4" cols="50" style="margin-bottom: 30px;"></textarea>
 
        <br />
        <button id="generate_page" onclick="generatePage()"> Generate Page </button>
 
 
-       <table class="table" style="margin-top:50px;">
-            <thead>
+       <table class="table table-striped" style="margin-top:50px;">
+            <thead class="table-dark">
                 <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Title</th>
@@ -37,7 +37,7 @@
                 <tr>
                     <td>{{$item->id}}</td>
                     <td>{{$item->title}}.html</td>
-                    <td> <a href="{{ route('file.download', ['filename' => $item->title.'.html']) }}">Download</a></td>
+                    <td><a href="{{ route('file.download', ['filename' => $item->title.'.html']) }}">Download  |  <a href="http://localhost:8000/storage/{{$item->title}}.html">View</a></a></td>
                 </tr>
                 @endforeach
             </tbody>
@@ -67,6 +67,7 @@
                         alert('An error occurred: ' + xhr.responseText);
                     }
                 });
+                location.reload();
         }
 
     </script>
