@@ -19,4 +19,7 @@ Route::get('/', function () {
 
 });
 
+Route::get('/', [PageController::class, 'show']);
+
 Route::post('/save_page', [PageController::class, 'savePage'])->name('page.save');
+Route::get('download/{filename}', [PageController::class, 'download'])->name('file.download');
